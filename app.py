@@ -117,4 +117,4 @@ def gen_token():
 #-----------------------TOKEN GENERATE END-------------------
 
 if __name__=="__main__":
-    app.run(debug=True)
+    app.run()
