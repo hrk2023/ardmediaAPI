@@ -14,13 +14,14 @@ def token_required(f):
     @wraps(f)
     def token_inner(*args,**kwargs):
         token=request.args.get('token')
-
+        print(token)
         if not token:
             return jsonify({"message":"Token is Missing"})
         try:
             data=jwt.decode(token,app.config['SECRET_KEY'])
         except:
             return jsonify({'message':'Invalid Token'})
+
         return f(*args,**kwargs)
     return token_inner
 
@@ -117,4 +118,4 @@ def gen_token():
 #-----------------------TOKEN GENERATE END-------------------
 
 if __name__=="__main__":
-    app.run()
+    app.run(debug=True)
