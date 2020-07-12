@@ -106,6 +106,75 @@ def subscribe_post():
     return jsonify({"message":"Failure"})
 #-----------------------POST METHODS END---------------------
 
+#-----------------------DELETE METHODS-----------------------
+@token_required
+@app.route('/landing/<string:firstname>',methods=['DELETE'])
+def landing_del_one():
+    res = db1.landing.find('firstname')
+    if res is None:
+        return jsonify({"message":"No Data Found"})
+    status = db1.landing.remove(res[0])
+    if status:
+        return jsonify({"message":"Success"})
+    return jsonify({"message":"Failure"})
+
+@token_required
+@app.route('/landing',methods=['DELETE'])
+def landing_del():
+    res=db1.landing.find()
+    if res is None:
+        return jsonify({"message":"No Data Found"})
+    status = db1.landing.remove()
+    if status:
+        return jsonify({"message":"Success"})
+    return jsonify({"message":"Failure"})
+
+@token_required
+@app.route('/contact',methods=['DELETE'])
+def contact_del():
+    res=db1.contact.find()
+    if res is None:
+        return jsonify({"message":"No Data Found"})
+    status = db1.contact.remove()
+    if status:
+        return jsonify({"message":"Success"})
+    return jsonify({"message":"Failure"})
+
+@token_required
+@app.route('/contact/<string:firstname>',methods=['DELETE'])
+def contact_del_one():
+    res=db1.contact.find('firstname')
+    if res is None:
+        return jsonify({"message":"No Data Found"})
+    status = db1.contact.remove(res[0])
+    if status:
+        return jsonify({"message":"Success"})
+    return jsonify({"message":"Failure"})
+
+@token_required
+@app.route('/subscribe/<string:email>',methods=['DELETE'])
+def subscribe_del():
+    res=db1.subscribe.find('email')
+    if res is None:
+        return jsonify({"message":"No Data Found"})
+    status = db1.subscribe.remove(res[0])
+    if status:
+        return jsonify({"message":"Success"})
+    return jsonify({"message":"Failure"})
+
+@token_required
+@app.route('/subscribe',methods=['DELETE'])
+def subscribe_del():
+    res=db1.subscribe.find()
+    if res is None:
+        return jsonify({"message":"No Data Found"})
+    status = db1.subscribe.remove()
+    if status:
+        return jsonify({"message":"Success"})
+    return jsonify({"message":"Failure"})
+
+#--------------------DELETE METHODS END---------------------
+
 #-----------------------TOKEN GENERATE-----------------------
 @app.route('/gen_token')
 def gen_token():
