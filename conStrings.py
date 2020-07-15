@@ -5,6 +5,6 @@ try:
     DUSER=os.environ.get('DUSER')
 except:
     print('DATABASE CONNECTION VARIABLES NOT SET')
-conn="mongodb+srv://admin:nydqqzuy1324@cluster0-oobol.mongodb.net/"
+conn="mongodb+srv://admin:Nydqqzuy1324@cluster0.spqyy.mongodb.net/"
 client=MongoClient(conn)
-db1=client.DNAME
+db1=client.adrmedia
