@@ -1,5 +1,6 @@
 import os
 import jwt
+import secrets
 import datetime
 from functools import wraps
 from flask import Flask,request,jsonify,make_response
@@ -180,8 +181,8 @@ def subscribe_del():
 def gen_token():
     auth=request.authorization
     if auth and auth.username=='adminAdm' and auth.password=='Nydqqzuy1324':
-        token=jwt.encode({'user':auth.username, 'exp':datetime.datetime.utcnow()+datetime.timedelta(hours=48)},app.config['SECRET_KEY'])
-        return jsonify({'token':token.decode('UTF-8')})
+        key = secrets.token_hex()
+        return jsonify({'token':key})
     return make_response("COULD NOT VERIFY!",401,{'WWW-Authenticate':'Basic realm="Login Required"'})
 
 #-----------------------TOKEN GENERATE END-------------------
