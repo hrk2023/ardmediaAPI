@@ -154,7 +154,7 @@ def contact_del_one():
 
 @token_required
 @app.route('/subscribe/<string:email>',methods=['DELETE'])
-def subscribe_del1():
+def subscribe_del_one():
     res=db1.subscribe.find('email')
     if res is None:
         return jsonify({"message":"No Data Found"})
